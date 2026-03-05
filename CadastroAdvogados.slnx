@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Itens de Solução/">
+    <File Path=".gitignore" />
+    <File Path="docker-compose.yml" />
+    <File Path="init.sql" />
+    <File Path="Readme.md" />
+  </Folder>
+  <Project Path="Dominio/Dominio.csproj" Id="959f772e-e101-4072-873c-3448853dbcba" />
+  <Project Path="Repositorio/Repositorio.csproj" Id="b6ecd7dc-3950-468d-884d-71c814a9710f" />
+  <Project Path="Web/Web.csproj" Id="21d8b658-7d7d-43c4-a5ec-d32b2a974481" />
+</Solution>

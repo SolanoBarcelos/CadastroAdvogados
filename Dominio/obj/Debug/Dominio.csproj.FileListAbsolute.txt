@@ -1,0 +1,6 @@
+C:\Git\CadastroAdvogados\Dominio\bin\Debug\Dominio.dll
+C:\Git\CadastroAdvogados\Dominio\bin\Debug\Dominio.pdb
+C:\Git\CadastroAdvogados\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache
+C:\Git\CadastroAdvogados\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+C:\Git\CadastroAdvogados\Dominio\obj\Debug\Dominio.dll
+C:\Git\CadastroAdvogados\Dominio\obj\Debug\Dominio.pdb

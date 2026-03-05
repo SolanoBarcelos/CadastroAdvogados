@@ -1,0 +1,87 @@
+@using Web.ViewModels;
+@model IEnumerable<AdvogadoViewModel>
+
+@{
+    ViewBag.Title = "Lista de Advogados";
+}
+
+<div class="row" style="margin-top: 20px;">
+    <div class="col-md-12" style="display: flex; justify-content: space-between; align-items: center;">
+        <h2 style="margin: 0;">Advogados Cadastrados</h2>
+        @Html.ActionLink("Novo Advogado", "Cadastro", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+
+<hr />
+
+<div class="row" style="margin-bottom: 20px;">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Index", "Advogado", FormMethod.Get, new { @class = "form-inline" }))
+        {
+            <div class="form-group">
+                <input type="text"
+                       name="pStrBusca"
+                       class="form-control"
+                       placeholder="Buscar por Nome ou ID..."
+                       style="width: 300px;"
+                       value="@Request.QueryString["pStrBusca"]" />
+
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search"></span> Filtrar
+                </button>
+
+                @if (!string.IsNullOrEmpty(Request.QueryString["pStrBusca"]))
+                {
+                    <a href="@Url.Action("Index")" class="btn btn-link">Limpar Filtro</a>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Senioridade</th>
+            <th>Bairro/Estado</th>
+            <th>CEP</th>
+            <th width="180"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="5" class="text-center text-muted">Nenhum advogado encontrado para esta busca.</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nome</td>
+                    <td>@item.Senioridade</td>
+                    <td>@item.Bairro - @item.Estado</td>
+                    <td>@item.Cep</td>
+                    <td class="text-center" style="white-space: nowrap;">
+                        @Html.ActionLink("Editar", "Cadastro", new { pIntId = item.Id },
+                            new { @class = "btn btn-xs btn-warning", style = "width: 70px; margin-right: 8px;" })
+
+                        <a href="javascript:void(0)"
+                           class="btn btn-xs btn-danger"
+                           style="width: 70px;"
+                           onclick="AdvogadoViewModel_Excluir(@item.Id)">Excluir</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        AdvogadoViewModel_AoCarregarComponente();
+    </script>
+}

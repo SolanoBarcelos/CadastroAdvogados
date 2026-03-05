@@ -1,0 +1,24 @@
+# AMBIENTE DE DESENVOLVIMENTO LOCAL (DOCKER)
+# Comando para iniciar a infraestrutura: docker-compose up -d
+# Comando para remover Containers e os DADOS: docker-compose down -v
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_advogados
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "1234"
+      MYSQL_DATABASE: db_advogados
+    ports:
+      - "3306:3306"
+    volumes:
+            # Persistência: mapeia os dados do banco para um volume
+      - mysql_data_vol:/var/lib/mysql
+      # Inicialização: cria as tabelas e insere dados fictícios
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+# Definição do volume nomeado na raiz do arquivo
+volumes:
+  mysql_data_vol:
