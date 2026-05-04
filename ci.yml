@@ -1,0 +1,39 @@
+name: CadastroAdvogados .NET Framework 4.8 CI
+
+on:
+  push:
+    branches:
+      - '**' # Dispara em qualquer branch
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    # O .NET Framework 4.8 exige obrigatoriamente um runner Windows
+    runs-on: windows-latest 
+
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v4
+
+      - name: Configurar MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Configurar NuGet
+        uses: NuGet/setup-nuget@v1.2.0
+
+      - name: Configurar VSTest
+        # Este passo resolve o erro de 'vstest.console.exe' não reconhecido
+        uses: microsoft/setup-vstest@v1.2
+
+      - name: Restaurar Pacotes NuGet
+        run: nuget restore CadastroAdvogados.slnx
+
+      - name: Compilar Solução (Build)
+        run: msbuild CadastroAdvogados.slnx /p:Configuration=Release /p:Platform="Any CPU"
+
+      - name: Executar Testes de Arquitetura
+        # Passo "Shift-Left": se a nomenclatura estiver errada, o pipeline morre aqui
+        run: |
+          vstest.console.exe .\CadastroAdvogados.Testes\bin\Release\CadastroAdvogados.Testes.dll

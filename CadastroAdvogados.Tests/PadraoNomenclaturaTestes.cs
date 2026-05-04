@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using FluentAssertions.Execution; // Adicionado para permitir o bloco customizado de asserção com mensagens detalhadas
 
-namespace CadastroAdvogados.Tests
+namespace CadastroAdvogados.Testes
 {
     /// <summary>
     /// ARCHITECTURE UNIT TEST: 
