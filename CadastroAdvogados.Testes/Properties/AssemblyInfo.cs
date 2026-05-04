@@ -2,18 +2,18 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("CadastroAdvogados.Tests")]
+[assembly: AssemblyTitle("CadastroAdvogados.Testes")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CadastroAdvogados.Tests")]
+[assembly: AssemblyProduct("CadastroAdvogados.Testes")]
 [assembly: AssemblyCopyright("Copyright ©  2026")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
 
-[assembly: Guid("0f7dbf2d-ef94-495d-bf83-3555b7f48555")]
+[assembly: Guid("020ea68b-12ed-4cd7-a34f-814c6741936f")]
 
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]

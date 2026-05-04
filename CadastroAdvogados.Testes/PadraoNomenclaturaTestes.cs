@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using FluentAssertions.Execution; // Adicionado para permitir o bloco customizado de asserção com mensagens detalhadas
+using FluentAssertions.Execution; // Permite o bloco customizado de asserção com mensagens detalhadas
 
 namespace CadastroAdvogados.Testes
 {
@@ -35,7 +35,7 @@ namespace CadastroAdvogados.Testes
     /// </summary>
 
     [TestClass]
-    public class ArquiteturaNamingTestes
+    public class PadraoNomenclaturaTestes
     {
         [TestMethod]
         public void Parametros_Em_Toda_A_Solucao_Devem_Usar_Notacao_Hungara()
