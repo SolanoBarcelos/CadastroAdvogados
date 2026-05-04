@@ -3,7 +3,7 @@ name: CadastroAdvogados .NET Framework 4.8 CI
 on:
   push:
     branches:
-      - '**' # Dispara em qualquer branch
+      - '**' # Dispara em qualquer branch para garantir o Shift-Left
   pull_request:
     branches:
       - main
@@ -24,7 +24,6 @@ jobs:
         uses: NuGet/setup-nuget@v1.2.0
 
       - name: Configurar VSTest
-        # Este passo resolve o erro de 'vstest.console.exe' não reconhecido
         uses: microsoft/setup-vstest@v1.2
 
       - name: Restaurar Pacotes NuGet
