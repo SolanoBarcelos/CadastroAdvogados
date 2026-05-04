@@ -3,6 +3,7 @@
 # Comando para remover Containers e os DADOS: docker-compose down -v
 
 services:
+
   db:
     image: mysql:8.0
     container_name: mysql_advogados
@@ -18,6 +19,16 @@ services:
       - mysql_data_vol:/var/lib/mysql
       # Inicialização: cria as tabelas e insere dados fictícios
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  #sonarqube:
+    #image: sonarqube:lts-community
+    #container_name: sonarqube_advogados
+    #ports:
+      #- "9000:9000"
+    #restart: always
+    # O SonarQube exige que o sistema operacional tenha um limite de memória virtual alto
+    # Se o container fechar sozinho, será necessário rodar no terminal do WSL:
+    # sudo sysctl -w vm.max_map_count=262144
 
 # Definição do volume nomeado na raiz do arquivo
 volumes:

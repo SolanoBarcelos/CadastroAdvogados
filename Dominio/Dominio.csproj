@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Advogado\Advogado.cs" />
+    <Compile Include="Testes\ClassParaTestes.cs" />
     <Compile Include="Endereco\Endereco.cs" />
     <Compile Include="Enums\Senioridade\Senioridade.cs" />
     <Compile Include="Enums\Estado\Estado.cs" />
