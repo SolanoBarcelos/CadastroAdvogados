@@ -67,33 +67,38 @@ namespace CadastroAdvogados.Testes
                 .Where(m => m.GetBaseDefinition().DeclaringType == m.DeclaringType);
 
             // 3. Execução validação
-            foreach (var metodo in metodosParaValidar)
+            // O AssertionScope impede que o teste pare no primeiro erro, agrupando todas as falhas.
+            using (new AssertionScope())
             {
-                foreach (var param in metodo.GetParameters())
+                foreach (var metodo in metodosParaValidar)
                 {
-                    string prefixoEsperado = ObterPrefixoPorTipo(param.ParameterType);
-
-                    if (!string.IsNullOrEmpty(prefixoEsperado))
+                    foreach (var param in metodo.GetParameters())
                     {
-                        bool respeitaNotacao = param.Name.StartsWith(prefixoEsperado);
+                        string prefixoEsperado = ObterPrefixoPorTipo(param.ParameterType);
 
-                        // Asserção DEVE FICAR COM RECUO ASSIM para correta formatação no Test Explorer
-                        Execute.Assertion
-                            .ForCondition(respeitaNotacao)
-                            .FailWith($@"
+                        if (!string.IsNullOrEmpty(prefixoEsperado))
+                        {
+                            bool respeitaNotacao = param.Name.StartsWith(prefixoEsperado);
+
+                            // Asserção DEVE FICAR COM RECUO ASSIM para correta formatação no Test Explorer
+                            Execute.Assertion
+                                .ForCondition(respeitaNotacao)
+                                .FailWith($@"
 [FALHA DE PADRÃO DE NOMENCLATURA]
 ---------------------------------------------------
 -> Projeto:  {metodo.DeclaringType.Assembly.GetName().Name}
 -> Classe:   {metodo.DeclaringType.Name}
 -> Método:   {metodo.Name}
 -> Variável: '{param.Name}'
----------------------------------------------------
+-----
 Valor Esperado: Começar com '{prefixoEsperado}'
 Valor Atual:    '{param.Name}'
-Regra Quebrada: Como o tipo é {param.ParameterType.Name}, a Notação Húngara exige o prefixo '{prefixoEsperado}'.");
+Regra Quebrada: Como o tipo é {param.ParameterType.Name}, a Notação Húngara exige o prefixo '{prefixoEsperado}'.;
+---------------------------------------------------");
+                        }
                     }
                 }
-            }
+            } // Ao fechar esta chave, o FluentAssertions avalia tudo e mostra a lista completa de erros.
         }
 
         private string ObterPrefixoPorTipo(Type tipo)
