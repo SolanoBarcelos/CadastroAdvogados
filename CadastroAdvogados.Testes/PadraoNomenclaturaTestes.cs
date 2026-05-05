@@ -53,7 +53,6 @@ namespace CadastroAdvogados.Testes
                 }
                 catch
                 {
-                    /* Ignorar falhas de carregamento pontuais */
                 }
             }
 
@@ -98,7 +97,7 @@ Regra Quebrada: Como o tipo é {param.ParameterType.Name}, a Notação Húngara 
                         }
                     }
                 }
-            } // Ao fechar esta chave, o FluentAssertions avalia tudo e mostra a lista completa de erros.
+            }
         }
 
         private string ObterPrefixoPorTipo(Type tipo)

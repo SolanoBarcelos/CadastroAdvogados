@@ -18,9 +18,9 @@ namespace Web.Controllers
             _advogadoRepositorio = new AdvogadoRepositorio();
         }
 
-        public ActionResult Index(string Busca)
+        public ActionResult Index(string pStrBusca)
         {
-            var listaDominio = _advogadoRepositorio.ListarAdvogados(Busca);
+            var listaDominio = _advogadoRepositorio.ListarAdvogados(pStrBusca);
 
             var listaViewModel = listaDominio.Select(pObj => new AdvogadoViewModel
             {
