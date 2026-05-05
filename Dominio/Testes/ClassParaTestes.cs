@@ -8,6 +8,6 @@ namespace Dominio
 {
     public class ClassParaTestes
     {
-        public void MetodoTeste(string nomeErrado) { }
+        //public void MetodoTeste(string nomeErrado) { }
     }
 }
