@@ -21,10 +21,7 @@ jobs:
         uses: microsoft/setup-msbuild@v2
 
       - name: Configurar NuGet
-        uses: NuGet/setup-nuget@v1.2.0
-
-      - name: Configurar VSTest
-        uses: microsoft/setup-vstest@v1.2
+        uses: NuGet/setup-nuget@v2
 
       - name: Restaurar Pacotes NuGet
         run: nuget restore CadastroAdvogados.slnx
@@ -33,6 +30,5 @@ jobs:
         run: msbuild CadastroAdvogados.slnx /p:Configuration=Release /p:Platform="Any CPU"
 
       - name: Executar Testes de Arquitetura
-        # Passo "Shift-Left": se a nomenclatura estiver errada, o pipeline morre aqui
-        run: |
-          vstest.console.exe .\CadastroAdvogados.Testes\bin\Release\CadastroAdvogados.Testes.dll
+        # Passo "Shift-Left": usamos o CLI moderno nativo para barrar nomenclaturas fora do padrão
+        run: dotnet test .\CadastroAdvogados.Testes\bin\Release\CadastroAdvogados.Testes.dll
