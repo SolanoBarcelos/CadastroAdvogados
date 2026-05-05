@@ -3,7 +3,7 @@ name: CadastroAdvogados .NET Framework 4.8 CI
 on:
   push:
     branches:
-      - '**' # Dispara em qualquer branch 
+      - '**' # Dispara em qualquer branch para garantir o Shift-Left
   pull_request:
     branches:
       - main
@@ -14,22 +14,21 @@ jobs:
     runs-on: windows-latest 
 
     steps:
-    - name: Checkout do Código
-      uses: actions/checkout@v4
+      - name: Checkout do Código
+        uses: actions/checkout@v4
 
-    - name: Configurar MSBuild
-      uses: microsoft/setup-msbuild@v2
+      - name: Configurar MSBuild
+        uses: microsoft/setup-msbuild@v2
 
-    - name: Configurar NuGet
-      uses: NuGet/setup-nuget@v1.2.0
+      - name: Configurar NuGet
+        uses: NuGet/setup-nuget@v2
 
-    - name: Restaurar Pacotes NuGet
-      run: nuget restore CadastroAdvogados.slnx
+      - name: Restaurar Pacotes NuGet
+        run: nuget restore CadastroAdvogados.slnx
 
-    - name: Compilar Solução (Build)
-      run: msbuild CadastroAdvogados.slnx /p:Configuration=Release /p:Platform="Any CPU"
+      - name: Compilar Solução (Build)
+        run: msbuild CadastroAdvogados.slnx /p:Configuration=Release /p:Platform="Any CPU"
 
-    - name: Executar Testes de Arquitetura
-      # Passo "Shift-Left": se a nomenclatura estiver errada, o pipeline morre aqui
-      run: |
-        vstest.console.exe .\CadastroAdvogados.Tests\bin\Release\CadastroAdvogados.Testes.dll
+      - name: Executar Testes de Arquitetura
+        # Passo "Shift-Left": usamos o CLI moderno nativo para barrar nomenclaturas fora do padrão
+        run: dotnet test .\CadastroAdvogados.Testes\bin\Release\CadastroAdvogados.Testes.dll
