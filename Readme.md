@@ -11,7 +11,7 @@ Este sistema é um CRUD de advogados, desenvolvido em ASP.NET MVC 5.
 
 - **Camada Web:** MVC 5 utilizando ViewModels para tráfego de dados e Views organizadas por objeto.
 
-- **Governança de Código (Shift-Left):** Automação de regras estruturais garantindo o cumprimento de padrões arquiteturais diretamente na esteira de CI (Integração Contínua). Ler "Sumary" de "ARCHITECTURE UNIT TEST" do arquivo "PadraoNomenclaturaTests.cs" no projeto "CadastroAdvogados.Tests" para mais detalhes.
+- **Governança de Código (Shift-Left):** Automação de regras estruturais garantindo o cumprimento de padrões arquiteturais diretamente na esteira de CI (Integração Contínua). Ler "Sumary" de "ARCHITECTURE UNIT TEST" do arquivo "PadraoNomenclaturaTestes.cs" no projeto "CadastroAdvogados.Testes" para mais detalhes.
 
 ## TECNOLOGIAS UTILIZADAS
 
